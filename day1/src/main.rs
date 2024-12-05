@@ -31,14 +31,14 @@ fn main() -> io::Result<()>{
     right.sort();
 
     // day1(left, right);
-    day2(&left,&right);
+    day1pt2(&left,&right);
 
 
     Ok(())
 
 }
 
-fn day2(left:&Vec<i32>, right:&Vec<i32>){
+fn day1pt2(left:&Vec<i32>, right:&Vec<i32>){
     let mut similarity_score = 0;
     for &l in left{
         let count = right.iter().filter(|&&r|r == l).count();
