@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::{self, BufRead};
 fn main() -> io::Result<()>{
-    println!("Hello, world!");
+    
     let path = "/Users/katenixon/Documents/GitHub/adventofcode24/day1/src/input.txt";
     let file = File::open(path)?;
 
@@ -30,6 +30,26 @@ fn main() -> io::Result<()>{
     left.sort();
     right.sort();
 
+    // day1(left, right);
+    day2(&left,&right);
+
+
+    Ok(())
+
+}
+
+fn day2(left:&Vec<i32>, right:&Vec<i32>){
+    let mut similarity_score = 0;
+    for &l in left{
+        let count = right.iter().filter(|&&r|r == l).count();
+        similarity_score += l * count as i32;
+    }
+
+    print!("similarity score is {}",similarity_score)
+
+}
+
+fn day1(left:&Vec<i32>, right:&Vec<i32>){
     let mut total_distance = 0;
 
     for (l, r) in left.iter().zip(right.iter()) {
@@ -41,13 +61,5 @@ fn main() -> io::Result<()>{
     
     }
 
-    println!("/n\n total distance is: {}", total_distance);
-
-
-
-
-
-
-    Ok(())
-
+    println!("/n total distance is: {}", total_distance);
 }
